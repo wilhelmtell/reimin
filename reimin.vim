@@ -13,24 +13,19 @@ let loaded_reimin = 1
 function! s:reiminIncludeSystem()
 endfunction
 
-function! s:prompt()
-  if &ft == "cpp" || &ft == "c"
-    return "#include"
-  else
-    return -1
+function s:reiminMain(opts)
+  let l:include = input(a:opts['prompt'])
+  let l:include = substitute(l:include, "^\\s\\+\\|\\s\\+$", "", "g")
+  let l:pos = search(a:opts['keyword'], "bnw") " FIXME: regex-escape l:prompt
+  if( l:include != "" )
+    for pipe in a:opts['substitute']
+      let l:include = substitute(l:include, pipe[0], pipe[1], pipe[2])
+    endfor
+    let l:include = a:opts['keyword'] . a:opts['delimiter'] . l:include
+    call append(l:pos, l:include)
   endif
 endfunction
 
-function s:reiminMain()
-  let l:prompt = s:prompt()
-  if l:prompt == -1
-    return
-  endif
-  let l:header = input(l:prompt . " ")
-  let l:header = substitute(l:header, "^\\s\\+\\|\\s\\+$", "", "g")
-  let l:pos = search(l:prompt, "bnw") " FIXME: regex-escape l:prompt
-  if( l:header != "" )
-    call append(l:pos, prompt . " <" . l:header . ">")
-  endif
-endfunction
-command Include :call s:reiminMain()
+let s:includeSystemOptions = {'keyword': '#include', 'delimiter': ' ', 'substitute': [['^', '<', ''], ['$', '>', '']], 'prompt': 'Include: '}
+
+command IncludeSystem :call s:reiminMain(s:includeSystemOptions)
