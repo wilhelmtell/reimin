@@ -1,0 +1,23 @@
+*reimin.txt*  Plugin for adding #includes
+
+Matan Nassau <matan.nassau@gmail.com>
+
+Adding an #include in a C or C++ program is very simple: you move the cursor
+somewhere near the top of the file and place your #include there. My trouble
+with this is that it's annoying to jump to the top of file and then return to
+where I was because it distracts my focus. The reimin plugin is therefore here
+to simply allow adding an #include without moving the cursor.
+
+
+:IncludeSystem                                      *reimin-add-system-include*
+
+Add a system #include after the last #include line above the current position
+of the cursor. You will be asked to enter the header to #include on the command
+line.
+
+
+:IncludeLocal                                        *reimin-add-local-include*
+
+Add a local #include after the last #include line above the current position of
+the cursor. You will be asked to enter the header to #include on the command
+line.
