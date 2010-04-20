@@ -26,6 +26,8 @@ function s:reiminMain(opts)
   endif
 endfunction
 
-let s:includeSystemOptions = {'keyword': '#include', 'delimiter': ' ', 'substitute': [['^', '<', ''], ['$', '>', '']], 'prompt': 'Include: '}
+let s:includeSystemOptions = {'keyword': '#include', 'delimiter': ' ', 'substitute': [['^', '<', ''], ['$', '>', '']], 'prompt': 'System Include: '}
+let s:includeLocalOptions = {'keyword': '#include', 'delimiter': ' ', 'substitute': [['^', '"', ''], ['$', '"', '']], 'prompt': 'Local Include: '}
 
 command IncludeSystem :call s:reiminMain(s:includeSystemOptions)
+command IncludeLocal :call s:reiminMain(s:includeLocalOptions)
