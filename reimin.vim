@@ -10,7 +10,7 @@ if v:version < 700
 endif
 let loaded_reimin = 1
 
-function s:reiminMain(opts)
+function <SID>reiminMain(opts)
   let l:include = input(a:opts['prompt'])
   let l:include = substitute(l:include, "^\\s\\+\\|\\s\\+$", "", "g")
   let l:pos = search(a:opts['keyword'], "bnw") " FIXME: regex-escape l:prompt
@@ -23,8 +23,6 @@ function s:reiminMain(opts)
   endif
 endfunction
 
-let s:includeSystemOptions = {'keyword': '#include', 'delimiter': ' ', 'substitute': [['^', '<', ''], ['$', '>', '']], 'prompt': 'System Include: '}
-let s:includeLocalOptions = {'keyword': '#include', 'delimiter': ' ', 'substitute': [['^', '"', ''], ['$', '"', '']], 'prompt': 'Local Include: '}
-
-command IncludeSystem :call s:reiminMain(s:includeSystemOptions)
-command IncludeLocal :call s:reiminMain(s:includeLocalOptions)
+" FIXME: have these commands defined only for relevant &ft
+command IncludeSystem :call <SID>reiminMain(b:reiminSystemInclude)
+command IncludeLocal :call <SID>reiminMain(b:reiminLocalInclude)
