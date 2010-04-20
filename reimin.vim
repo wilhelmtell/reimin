@@ -10,9 +10,6 @@ if v:version < 700
 endif
 let loaded_reimin = 1
 
-function! s:reiminIncludeSystem()
-endfunction
-
 function s:reiminMain(opts)
   let l:include = input(a:opts['prompt'])
   let l:include = substitute(l:include, "^\\s\\+\\|\\s\\+$", "", "g")
