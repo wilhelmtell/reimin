@@ -10,6 +10,18 @@ if v:version < 700
 endif
 let loaded_reimin = 1
 
+if has("autocmd")
+  augroup reimin
+    autocmd!
+    autocmd FileType c,cpp  call s:InitC()
+  augroup END
+endif
+
+function! s:InitC()
+  let s:reiminSystemInclude = {'keyword': '#include', 'delimiter': ' ', 'substitute': [['^', '<', ''], ['$', '>', '']], 'prompt': 'System Include: '}
+  let s:reiminLocalInclude = {'keyword': '#include', 'delimiter': ' ', 'substitute': [['^', '"', ''], ['$', '"', '']], 'prompt': 'Local Include: '}
+endfunction
+
 function <SID>reiminMain(opts)
   let l:include = input(a:opts['prompt'])
   let l:include = substitute(l:include, "^\\s\\+\\|\\s\\+$", "", "g")
@@ -24,5 +36,5 @@ function <SID>reiminMain(opts)
 endfunction
 
 " FIXME: have these commands defined only for relevant &ft
-command IncludeSystem :call <SID>reiminMain(b:reiminSystemInclude)
-command IncludeLocal :call <SID>reiminMain(b:reiminLocalInclude)
+command IncludeSystem :call <SID>reiminMain(s:reiminSystemInclude)
+command IncludeLocal :call <SID>reiminMain(s:reiminLocalInclude)
