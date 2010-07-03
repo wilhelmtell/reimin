@@ -14,12 +14,18 @@ if has("autocmd")
   augroup reimin
     autocmd!
     autocmd FileType c,cpp  call s:InitC()
+    autocmd FileType ruby   call s:InitRuby()
   augroup END
 endif
 
 function! s:InitC()
   let s:reiminSystemInclude = {'keyword': '#include', 'delimiter': ' ', 'substitute': [['^', '<', ''], ['$', '>', '']], 'prompt': 'System Include: '}
   let s:reiminLocalInclude = {'keyword': '#include', 'delimiter': ' ', 'substitute': [['^', '"', ''], ['$', '"', '']], 'prompt': 'Local Include: '}
+endfunction
+
+function! s:InitRuby()
+  let s:reiminSystemInclude = {'keyword': 'require', 'delimiter': ' ', 'substitute': [['^', "'", ''], ['$', "'", '']], 'prompt': 'Require: '}
+  let s:reiminLocalInclude = {'keyword': 'require', 'delimiter': ' ', 'substitute': [['^', "'", ''], ['$', "'", '']], 'prompt': 'Require: '}
 endfunction
 
 function <SID>reiminMain(opts)
