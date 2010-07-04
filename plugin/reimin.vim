@@ -13,8 +13,9 @@ let loaded_reimin = 1
 if has("autocmd")
   augroup reimin
     autocmd!
-    autocmd FileType c,cpp  call s:InitC()
-    autocmd FileType ruby   call s:InitRuby()
+    autocmd FileType c,cpp   call s:InitC()
+    autocmd FileType ruby    call s:InitRuby()
+    autocmd FileType python  call s:InitPython()
   augroup END
 endif
 
@@ -43,6 +44,15 @@ function! s:InitRuby()
   \     ['$', "'", '']
   \   ],
   \   'prompt': 'Require: '
+  \ }
+endfunction
+
+function! s:InitPython()
+  let s:include_params = {
+  \   'keyword': 'import',
+  \   'delimiter': ' ',
+  \   'substitute': [],
+  \   'prompt': 'Import: '
   \ }
 endfunction
 
