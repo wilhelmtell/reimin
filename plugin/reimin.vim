@@ -19,11 +19,31 @@ if has("autocmd")
 endif
 
 function! s:InitC()
-  let s:include_params = {'keyword': '#include', 'delimiter': ' ', 'substitute': [['^<\(.*\)>$', '<\1>', ''], ['^<\(.*[^>]\)$', '<\1>', ''], ['^[<"][>"]\?$', '', ''], ['^\(".*"\)$', '\1', ''], ['^"\(.*[^"]\)$', '"\1"', ''], ['^\([^<"]\)\(.*\)', '"\1\2"', '']], 'prompt': 'Include: '}
+  let s:include_params = {
+  \   'keyword': '#include',
+  \   'delimiter': ' ',
+  \   'substitute': [
+  \     ['^<\(.*\)>$', '<\1>', ''],
+  \     ['^<\(.*[^>]\)$', '<\1>', ''],
+  \     ['^[<"][>"]\?$', '', ''],
+  \     ['^\(".*"\)$', '\1', ''],
+  \     ['^"\(.*[^"]\)$', '"\1"', ''],
+  \     ['^\([^<"]\)\(.*\)', '"\1\2"', '']
+  \   ],
+  \   'prompt': 'Include: '
+  \ }
 endfunction
 
 function! s:InitRuby()
-  let s:include_params = {'keyword': 'require', 'delimiter': ' ', 'substitute': [['^', "'", ''], ['$', "'", '']], 'prompt': 'Require: '}
+  let s:include_params = {
+  \   'keyword': 'require',
+  \   'delimiter': ' ',
+  \   'substitute': [
+  \     ['^', "'", ''],
+  \     ['$', "'", '']
+  \   ],
+  \   'prompt': 'Require: '
+  \ }
 endfunction
 
 function <SID>reiminMain(opts)
