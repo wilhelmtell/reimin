@@ -1,13 +1,38 @@
-*reimin.txt*  Plugin for adding #includes
+*reimin.txt*	For Vim version 7.0	Last change: 2014 Nov 5
 
-Matan Nassau <matan.nassau@gmail.com>
-
-#include a header with less distraction.
+Author:  Matan Nassau <matan.nassau@gmail.com>
 
 
-:Include                                            *reimin-add-include*
+1. Introduction                                                 |reimin-intro|
+2. The Include Command                                        |reimin-include|
 
-Add an #include after the last #include line above the current position of the
-cursor. You will be asked to enter the header to #include on the command line.
-You may optionally precede the header name with < character to specify a system
-header, or a " to specify a local header.
+
+==============================================================================
+1. Introduction                                                 *reimin-intro*
+
+Reimin is a plugin for adding #includes. It eliminates the need to jump to the
+top of the file to add the include, therefore reducing the distraction tax in
+adding an #include.
+
+
+==============================================================================
+2. The Include Command                                        *reimin-include*
+
+:Include                                                            *:Include*
+
+		Add an #include after the last #include line above the current
+		position of the cursor. Reimin will prompt you for the header
+		to #include. You may optionally precede the header name with a
+		less-than (<) character to specify a system header, or a
+		double-quote (") to specify a local header. E.g.,
+>
+		:Include
+		Include: <utility
+<
+		Or
+>
+		:Include
+		Include: "foo.hh
+<
+
+ vim:tw=78:ts=8:ft=help:norl:
