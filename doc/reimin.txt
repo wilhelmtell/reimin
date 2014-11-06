@@ -1,6 +1,7 @@
 *reimin.txt*	For Vim version 7.0	Last change: 2014 Nov 5
 
 Author:  Matan Nassau <matan.nassau@gmail.com>
+License: Same terms as Vim's. See |license|.
 
 
 1. Introduction                                                 |reimin-intro|
