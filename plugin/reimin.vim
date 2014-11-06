@@ -56,9 +56,20 @@ function! s:InitPython()
   \ }
 endfunction
 
+function! s:LStrip(str)
+  return substitute(a:str, '^\s\+', "", "")
+endfunction
+
+function! s:RStrip(str)
+  return substitute(a:str, '\s\+$', "", "")
+endfunction
+
+function! s:Strip(str)
+  return s:RStrip(s:LStrip(a:str))
+endfunction
+
 function <SID>reiminMain(opts)
-  let l:include = input(a:opts['prompt'])
-  let l:include = substitute(l:include, "^\\s\\+\\|\\s\\+$", "", "g")
+  let l:include = s:Strip(input(a:opts['prompt']))
   let l:pos = search(a:opts['keyword'], "bnw") " FIXME: regex-escape l:prompt
   for pipe in a:opts['substitute']
     let l:include = substitute(l:include, pipe[0], pipe[1], pipe[2])
