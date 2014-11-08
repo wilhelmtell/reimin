@@ -68,8 +68,8 @@ function! s:Strip(str)
   return s:RStrip(s:LStrip(a:str))
 endfunction
 
-function <SID>reiminMain(opts)
-  let l:include = s:Strip(input(a:opts['prompt']))
+function <SID>reiminMain(opts, args)
+  let l:include = empty(a:args) ? s:Strip(input(a:opts['prompt'])) : a:args[0]
   let l:pos = search(a:opts['keyword'], "bnw") " FIXME: regex-escape l:prompt
   for pipe in a:opts['substitute']
     let l:include = substitute(l:include, pipe[0], pipe[1], pipe[2])
@@ -80,4 +80,4 @@ function <SID>reiminMain(opts)
   endif
 endfunction
 
-command -nargs=? -complete=file Include :call <SID>reiminMain(s:include_params)
+command -nargs=? Include :call <SID>reiminMain(s:include_params, split(<q-args>, '\s\+'))
