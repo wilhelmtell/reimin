@@ -80,12 +80,4 @@ function <SID>reiminMain(opts)
   endif
 endfunction
 
-function <SID>print_deprecated()
-  echohl ErrorMsg
-  echo "This command is deprecated. Please use :Include instead."
-  echohl None
-endfunction
-
-command IncludeSystem :call <SID>print_deprecated()
-command IncludeLocal  :call <SID>print_deprecated()
-command Include :call <SID>reiminMain(s:include_params)
+command -nargs=? -complete=file Include :call <SID>reiminMain(s:include_params)
