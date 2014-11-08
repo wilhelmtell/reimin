@@ -80,4 +80,4 @@ function <SID>reiminMain(opts, args)
   endif
 endfunction
 
-command -nargs=? Include :call <SID>reiminMain(s:include_params, split(<q-args>, '\s\+'))
+command -nargs=? -complete=file Include :call <SID>reiminMain(s:include_params, split(<q-args>, '\s\+'))
