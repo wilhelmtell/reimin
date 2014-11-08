@@ -74,7 +74,7 @@ function <SID>reiminMain(opts, args)
   for pipe in a:opts['substitute']
     let l:include = substitute(l:include, pipe[0], pipe[1], pipe[2])
   endfor
-  if( l:include != "" )
+  if l:include != ""
     let l:include = a:opts['keyword'] . a:opts['delimiter'] . l:include
     call append(l:pos, l:include)
   endif
